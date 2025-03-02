@@ -144,8 +144,8 @@ def handle_url(message):
     conn.commit()
     response_message = get_msg("shortened_response_message", lang)
     response_link = get_msg("shortened_response_link", lang).format(shortened)
-    bot.send_message(message.chat.id, response_message, parse_mode="Markdown", disable_web_page_preview=True)
-    bot.send_message(message.chat.id, response_link, parse_mode="Markdown", disable_web_page_preview=True)
+    bot.send_message(message.chat.id, response_message, parse_mode="Markdown")
+    bot.send_message(message.chat.id, response_link, parse_mode="Markdown")
 
 # Handler for other messages
 @bot.message_handler(func=lambda message: not (message.text.startswith("http://") or 
