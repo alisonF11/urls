@@ -1,7 +1,6 @@
 import telebot
 import requests
 import sqlite3
-import re
 from datetime import datetime
 from telebot import types
 
