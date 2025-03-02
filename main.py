@@ -140,7 +140,9 @@ def handle_url(message):
         (message.from_user.id, original_url, shortened, now)
     )
     conn.commit()
-    response_text = get_msg("shortened_response", lang).format(shortened)
+    # Add a space after the dot to prevent link preview
+    no_preview_shortened = shortened.replace('.', '. ')
+    response_text = get_msg("shortened_response", lang).format(no_preview_shortened)
     bot.send_message(message.chat.id, response_text, parse_mode="Markdown")
 
 # Handler for other messages
