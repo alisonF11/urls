@@ -5,7 +5,7 @@ from datetime import datetime
 from telebot import types
 
 # ===== Bot Configuration =====
-TOKEN = '7800586340:AAGjVeACwjQF6vF4-6hHKJeMJC0xck9pIEk'
+TOKEN = '7800586340:AAFJKl4_M3YPVvUTpdjv6LIeyt6hQBWui20'
 ADMIN_IDS = [7148392834]  # Replace with your Telegram administrator IDs
 bot = telebot.TeleBot(TOKEN)
 
