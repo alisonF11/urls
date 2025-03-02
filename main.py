@@ -45,7 +45,7 @@ MESSAGES = {
         "en": "⚠️ Oops! An error occurred while shortening the URL."
     },
     "shortened_response_message": {
-        "en": "🔗 **Here’s your shortened link 🚀🔗**"
+        "en": "🔗 **Here’s your shortened link 🚀🔗:**"
     },
     "shortened_response_link": {
         "en": "{}"
