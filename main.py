@@ -44,8 +44,11 @@ MESSAGES = {
     "error_shortening": {
         "en": "⚠️ Oops! An error occurred while shortening the URL."
     },
-    "shortened_response": {
-        "en": "🔗 **Your shortened URL is:** {}"
+    "shortened_response_message": {
+        "en": "🔗 **Your URL has been shortened.**"
+    },
+    "shortened_response_link": {
+        "en": "{}"
     },
     "not_authorized": {
         "en": "🚫 You are not authorized to use this command."
@@ -139,8 +142,10 @@ def handle_url(message):
         (message.from_user.id, original_url, shortened, now)
     )
     conn.commit()
-    response_text = get_msg("shortened_response", lang).format(shortened)
-    bot.send_message(message.chat.id, response_text, parse_mode="Markdown", disable_web_page_preview=True)
+    response_message = get_msg("shortened_response_message", lang)
+    response_link = get_msg("shortened_response_link", lang).format(shortened)
+    bot.send_message(message.chat.id, response_message, parse_mode="Markdown", disable_web_page_preview=True)
+    bot.send_message(message.chat.id, response_link, parse_mode="Markdown", disable_web_page_preview=True)
 
 # Handler for other messages
 @bot.message_handler(func=lambda message: not (message.text.startswith("http://") or 
