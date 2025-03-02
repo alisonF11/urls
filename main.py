@@ -5,7 +5,7 @@ from datetime import datetime
 from telebot import types
 
 # ===== Bot Configuration =====
-TOKEN = '7800586340:AAFJKl4_M3YPVvUTpdjv6LIeyt6hQBWui20'
+TOKEN = '7800586340:AAGjVeACwjQF6vF4-6hHKJeMJC0xck9pIEk'
 ADMIN_IDS = [7148392834]  # Replace with your Telegram administrator IDs
 bot = telebot.TeleBot(TOKEN)
 
@@ -45,7 +45,7 @@ MESSAGES = {
         "en": "⚠️ Oops! An error occurred while shortening the URL."
     },
     "shortened_response_message": {
-        "en": "🔗 **Here’s your shortened link 🚀🔗:**"
+        "en": "🔗 **Your URL has been shortened.**"
     },
     "shortened_response_link": {
         "en": "{}"
