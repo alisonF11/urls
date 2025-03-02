@@ -70,10 +70,14 @@ MESSAGES = {
         "en": ("Admin Commands:\n"
                "/admin_users - List all users\n"
                "/admin_notify <message> - Send a notification to all users\n"
-               "/admin_delete <user_id> - Delete a user by ID")
+               "/admin_delete <user_id> - Delete a user by ID\n"
+               "/admin_links - List all links")
     },
     "invalid_link": {
         "en": "⚠️ Please provide a valid URL."
+    },
+    "links_list": {
+        "en": "🔗 List of links:\n{}"
     }
 }
 
@@ -219,6 +223,21 @@ def admin_delete(message):
     cursor.execute("DELETE FROM links WHERE user_id = ?", (user_id,))
     conn.commit()
     bot.send_message(message.chat.id, get_msg("user_deleted", lang).format(user_id))
+
+# /admin_links: Displays the list of all links
+@bot.message_handler(commands=['admin_links'])
+def admin_links(message):
+    lang = get_lang(message)
+    if message.from_user.id not in ADMIN_IDS:
+        bot.send_message(message.chat.id, get_msg("not_authorized", lang))
+        return
+    cursor.execute("SELECT user_id, original_url, shortened_url, created_at FROM links")
+    rows = cursor.fetchall()
+    if not rows:
+        bot.send_message(message.chat.id, "No links found.")
+        return
+    links_list = "\n".join([f"User ID: {row[0]}, Original URL: {row[1]}, Shortened URL: {row[2]}, Created At: {row[3]}" for row in rows])
+    bot.send_message(message.chat.id, get_msg("links_list", lang).format(links_list))
 
 # ===== Start the Bot =====
 bot.polling()
